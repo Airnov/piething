@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculate PI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #output {
+            margin-bottom: 10px;
+        }
+
+        #iterations {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function calculatePi(iterations) {
+            let pi = 0;
+            let sign = 1;
+
+            for (let i = 1; i <= iterations; i++) {
+                let term = 2 * i - 1;
+                pi += sign * (4 / term);
+                sign *= -1;
+            }
+
+            return pi;
+        }
+
+        function calculate() {
+            let iterationsInput = document.getElementById("iterations");
+            let outputDiv = document.getElementById("output");
+            let iterations = parseInt(iterationsInput.value);
+
+            if (Number.isInteger(iterations) && iterations >= 0) {
+                let result = calculatePi(iterations);
+                outputDiv.textContent = `Current value of PI after ${iterations} iterations: ${result}`;
+            } else {
+                outputDiv.textContent = "Invalid input. Please enter a non-negative integer.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculate PI</h1>
+
+    <div id="output"></div>
+
+    <label for="iterations">Number of Iterations:</label>
+    <input type="number" id="iterations" min="0" value="1">
+    <br>
+    <button onclick="calculate()">Calculate</button>
+</body>
+</html>
